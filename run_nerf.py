@@ -366,8 +366,10 @@ def render_path(render_poses, hwf, chunk, render_kwargs, gt_imgs=None, savedir=N
 
         if savedir is not None:
             rgb8 = to8b(rgbs[-1])
-            filename = os.path.join(savedir, '{:03d}.png'.format(i))
-            imageio.imwrite(filename, rgb8)
+            filename_rgb = os.path.join(savedir, '{:03d}_rgb.png'.format(i))
+            imageio.imwrite(filename_rgb, rgb8)
+            filename_disp = os.path.join(savedir, '{:03d}_disp.tif'.format(i))
+            imageio.imwrite(filename_disp, disps[-1])
 
     rgbs = np.stack(rgbs, 0)
     disps = np.stack(disps, 0)
